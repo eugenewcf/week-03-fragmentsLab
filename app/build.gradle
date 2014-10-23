@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+dependencies {
+    compile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+}
+
 android {
     compileSdkVersion 18
     buildToolsVersion "20.0.0"
@@ -14,6 +18,12 @@ android {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    sourceSets {
+        androidTest {
+            java.srcDirs = ['src/test/java']
         }
     }
 }
