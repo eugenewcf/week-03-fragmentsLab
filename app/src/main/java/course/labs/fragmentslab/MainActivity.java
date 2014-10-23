@@ -30,6 +30,17 @@ public class MainActivity extends Activity implements
 
 			//TODO 1 - add the FriendsFragment to the fragment_container
 
+            // if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if(savedInstanceState != null) {
+                return;
+            }
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            mFriendsFragment.setArguments(getIntent().getExtras());
+
             // Start a new FragmentTransaction
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
@@ -79,7 +90,7 @@ public class MainActivity extends Activity implements
             FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
             // Add  the FriendsFragment to the layout
-            fragmentTransaction.add(R.id.fragment_container, mFeedFragment);
+            fragmentTransaction.replace(R.id.fragment_container, mFeedFragment);
 
             // Add this FragmentTransaction to the backstack
             fragmentTransaction.addToBackStack(null);
